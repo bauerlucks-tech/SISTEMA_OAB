@@ -1,3 +1,19 @@
+import sqlite3
+
+def criar_banco():
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS config (
+            id INTEGER PRIMARY KEY,
+            psd TEXT,
+            area_foto TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+criar_banco()
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import os
